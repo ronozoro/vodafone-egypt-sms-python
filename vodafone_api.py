@@ -6,7 +6,7 @@ import requests
 
 account_id = 'Vodafone Account ID'
 password = 'Vodafone Account Password'
-sender_name = 'The Sender Same Verified by Networks'
+sender_name = 'The Sender Name Verified by Networks'
 vodafone_secret = 'Your Vodafone Secret'
 phone_number = '1234566'
 headers = {'Content-Type': 'application/xml'}
