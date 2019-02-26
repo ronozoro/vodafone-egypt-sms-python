@@ -1,1 +1,1 @@
-# vodafone-egypt-sms-python
+# Script to send SMS using vodafone Egypt API
