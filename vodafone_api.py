@@ -17,9 +17,9 @@ base_hash += "SenderName={}&ReceiverMSISDN={} &SMSText={}&".format(sender_name, 
 sms_value = "<SMSList><SenderName>{}</SenderName><ReceiverMSISDN>{}</ReceiverMSISDN><SMSText>{}</SMSText> </SMSList>".format(
     sender_name, phone_number, your_message)
 base_hash = base_hash[:-1]
-vodafone_secret = bytes(vodafone_secret, 'latin-1')
-base_hash = bytes(base_hash, 'latin-1')
-secure_hash = hmac.new(vodafone_secret, base_hash, hashlib.sha256).hexdigest()
+vodafone_secret = bytes(vodafone_secret, 'UTF-8')
+base_hash = bytes(base_hash, 'UTF-8')
+secure_hash = hmac.new(vodafone_secret, base_hash, hashlib.sha256).hexdigest().upper()
 xml = "<?xml version='1.0' encoding='UTF-8'?><SubmitSMSRequest xmlns:='http://www.edafa.com/web2sms/sms/model/' xmlns:xsi='http://www.w3.org/2001/XMLSchema - instance' xsi:schemaLocation='http://www.edafa.com/web2sms/sms/model/ SMSAPI.xsd ' xsi:type='SubmitSMSRequest'><AccountId>{}</AccountId><Password>{}</Password> <SecureHash>{}</SecureHash>{}</SubmitSMSRequest>".format(
     account_id, password, secure_hash, sms_value)
 response = requests.post(url, data=xml, headers=headers)
